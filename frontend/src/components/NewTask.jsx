@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -30,17 +32,22 @@ import {
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
+import { TagSelector } from './TagSelector';
+import SubTask from './SubTask';
 
-const NewTask = () => {
+const NewTask = ({ open, onOpenChange }) => {
 	const [date, setDate] = useState();
 
 	return (
 		<div>
-			<Dialog>
-				<DialogTrigger asChild>
+			<Dialog
+				open={open}
+				onOpenChange={onOpenChange}
+			>
+				{/* <DialogTrigger asChild>
 					<Button>Edit Profile</Button>
-				</DialogTrigger>
-				<DialogContent className="w-full">
+				</DialogTrigger> */}
+				<DialogContent className="max-w-3xl">
 					<DialogHeader>
 						<DialogTitle>Add New Task</DialogTitle>
 						<DialogDescription>
@@ -60,7 +67,7 @@ const NewTask = () => {
 							<Label>Description</Label>
 							<Textarea placeholder="Enter the description.." />
 						</div>
-						<div className="flex justify-between">
+						<div className="flex justify-between gap-2">
 							<div className="grid gap-2">
 								<Label>Category</Label>
 								<Select>
@@ -85,13 +92,13 @@ const NewTask = () => {
 									</SelectContent>
 								</Select>
 							</div>
-							<div>
+							<div className="grid gap-2">
 								<Label>Due Date</Label>
 								<Popover>
 									<PopoverTrigger asChild>
 										<Button
 											variant="noShadow"
-											className="w-[280px] justify-start text-left font-base gap-2"
+											className="w-[270px] justify-start text-left font-base gap-2"
 										>
 											<CalendarIcon />
 											{date ? (
@@ -117,7 +124,24 @@ const NewTask = () => {
 								</Popover>
 							</div>
 						</div>
+						<TagSelector />
+						<SubTask />
 					</div>
+					<DialogFooter>
+						<div className="flex w-full justify-between items-center py-4">
+							<div>
+								<DialogClose asChild>
+									<Button variant="neutral">Cancel</Button>
+								</DialogClose>
+							</div>
+							<div>
+								<Button className="bg-main-red">Delete</Button>
+							</div>
+							<div>
+								<Button type="submit">Save changes</Button>
+							</div>
+						</div>
+					</DialogFooter>
 				</DialogContent>
 			</Dialog>
 		</div>

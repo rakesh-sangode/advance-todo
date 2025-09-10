@@ -13,9 +13,11 @@ import {
 	ScrollText,
 } from 'lucide-react';
 import React, { useState } from 'react';
+import NewTask from './NewTask';
 
 const TodoModel = ({ tasks, setTasks, title }) => {
 	const [openTask, setOpenTask] = useState(null);
+	const [isNewTaskOpen, setIsNewTaskOpen] = useState(false);
 	// const [tasks, setTasks] = useState();
 
 	const categoryColor = (category) => {
@@ -58,7 +60,7 @@ const TodoModel = ({ tasks, setTasks, title }) => {
 				<CardHeader>
 					<div className="flex items-end justify-between mb-4">
 						<CardTitle className="text-3xl">{title}</CardTitle>
-						<Button>
+						<Button onClick={() => setIsNewTaskOpen(true)}>
 							<Plus /> New Task
 						</Button>
 					</div>
@@ -122,6 +124,7 @@ const TodoModel = ({ tasks, setTasks, title }) => {
 								{/* <div className="ml-auto"> */}
 								<Button
 									className="ml-auto"
+									variant="noShadow"
 									size="icon"
 									onClick={() => toggleDetails(task.id)}
 									aria-expanded={openTask === task.id}
@@ -140,6 +143,10 @@ const TodoModel = ({ tasks, setTasks, title }) => {
 					</div>
 				</CardContent>
 			</Card>
+			<NewTask
+				open={isNewTaskOpen}
+				onOpenChange={setIsNewTaskOpen}
+			/>
 		</div>
 	);
 };

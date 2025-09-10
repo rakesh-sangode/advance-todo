@@ -12,7 +12,7 @@ const Home = () => {
 	const [weekTasks, setWeekTasks] = useState(weekData);
 	return (
 		<div className="min-h-screen py-8">
-			{/* <div className="inline-flex items-center rounded-base border-2 p-1 px-4 gap-2 bg-main mb-8">
+			<div className="inline-flex items-center rounded-base border-2 p-1 px-4 gap-2 bg-main mb-8">
 				<ScrollText size={32} />
 				<span className="text-3xl font-semibold">Upcoming</span>
 			</div>
@@ -32,8 +32,7 @@ const Home = () => {
 					tasks={weekTasks}
 					setTasks={setWeekTasks}
 				/>
-			</div> */}
-			<NewTask />
+			</div>
 		</div>
 	);
 };
